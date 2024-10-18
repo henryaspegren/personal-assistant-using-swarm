@@ -3,9 +3,7 @@ import caldav
 from datetime import datetime
 from icalendar import Calendar, Event as ICalEvent
 
-# TODO replace with environment variables "henryaspegren@gmail.com"
 icloud_username = os.getenv("ICLOUD_USER_NAME") 
-# This password is an app-specific password for my personal assistant "dzbn-skmg-svwc-lnjf"
 icloud_app_password = os.getenv("ICLOUD_ASSISTANT_APP_PASSWORD") 
 icloud_calendar_url = "https://caldav.icloud.com"
 
@@ -29,6 +27,7 @@ def get_calendar_events(start: str, end: str):
         calendars = principal.calendars()
         if not calendars:
             print("No calendars found for this account.")
+            return("There was an issue with the calendar")
         else:
             # Iterate over all calendars
             for calendar in calendars:
@@ -64,8 +63,10 @@ def get_calendar_events(start: str, end: str):
                                 results.append(event_info)
     except caldav.error.AuthorizationError:
         print("Authorization failed. Check your credentials or app-specific password.")
+        return("There was an issue with the calendar")
     except Exception as e:
         print(f"An error occurred: {e}")
+        return("There was an issue with the calendar")
     return results
 
 def create_calendar_event(summary: str, location: str, start: str, end: str, description: str):
