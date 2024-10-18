@@ -24,5 +24,7 @@ def case_resolved():
     return "Case resolved. No further questions."
 
 
-def initiate_baggage_search():
-    return "Baggage was found!"
+def initiate_baggage_search(bagID=None):
+    if bagID == "1001":
+        return "Baggage was found"
+    return "Baggage was not found"
