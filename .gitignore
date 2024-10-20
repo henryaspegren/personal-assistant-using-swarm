@@ -126,6 +126,8 @@ dmypy.json
 
 # credentials
 set_credentials.sh
+google_credentials.json
+
 
 # .BAK
 *.BAK
