@@ -6,7 +6,6 @@ from configs.agents import *
 from swarm.repl import run_demo_loop
 from flask import Flask, request, jsonify
 
-
 context_variables = {
     "customer_context": """Here is what you know about the customer's details:
 1. CUSTOMER_ID: customer_12345
@@ -22,7 +21,6 @@ context_variables = {
 The flight # is 1919. The flight departure date is 3pm ET, 5/21/2024.""",
 }
 
-# Replace these with your Telnyx API key and Messaging Profile ID
 TELNYX_API_KEY = os.getenv("TELNYX_API_KEY")
 MESSAGING_PROFILE_ID = os.getenv("MESSAGING_PROFILE_ID")
 FROM_NUMBER = os.getenv("TELNYX_NUMBER")
