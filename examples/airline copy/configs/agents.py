@@ -1,4 +1,5 @@
 from configs.tools import *
+from main import send_and_wait_for_reply
 from data.routines.baggage.policies import *
 from data.routines.flight_modification.policies import *
 from data.routines.prompts import STARTER_PROMPT
@@ -26,9 +27,13 @@ def message_person(name=str, message=str) -> str:
     """Call this function to message a specific person to discuss scheduling an event. The name should be the name of the person
     and the message should be the contents."""
     print("sending", message, "to", name)
-    user_input = input("Please enter your response")
-    print(f"You entered: {user_input}")
-    return user_input
+    FROM_NUMBER = "+12523567100"
+    TO_NUMBER = "+16505098807"
+    reply_message = send_and_wait_for_reply(TO_NUMBER, FROM_NUMBER, message)
+    print(f"Agent recieved reply: {reply_message}")
+    # user_input = input("Please enter your response")
+    # print(f"You entered: {user_input}")
+    return reply_message
 
 def triage_instructions(context_variables):
     customer_context = context_variables.get("customer_context", None)
@@ -99,7 +104,7 @@ appointment_agent = Agent(
         4. If the person confirms the appointment then create the event by calling 'create_calendar_event'. Message the person the event details.
         5. If this does not work, repeat steps 2-5 and ask again. 
         
-        IMPORANT: Only message Henry if you cannot complete these steps. You don't need to ask him his preferences or confirm if you already have sufficient info.
+        IMPORANT: Do not message Henry unless you do not have enough information to schedule the appointment.  You don't need to ask him his preferences or confirm if his calendar is free.
 
         For context the current date is {today}. Do not make additional assumptions.
         Either ask clarifying questions, or call one of your functions, every time. 
