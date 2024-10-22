@@ -134,9 +134,6 @@ def create_calendar_event(summary: str, location: str, start: str, end: str, des
         print(f"An error occurred: {e}")
         return("Event not created") 
 
-def escalate_to_agent(reason=None):
-    return f"Escalating to agent: {reason}" if reason else "Escalating to agent"
-
 def get_tasks():
     tasks = [
         {'name': 'Groceries', 'description': 'Get groceries for the week', 'duration (hours)': 1},
@@ -144,12 +141,3 @@ def get_tasks():
     ]
     print(tasks)
     return str(tasks)
-
-def escalate_to_henry(event: str, reason: str):
-    """This function escalates an event that cannot be booked to Henry. 
-        Event should be a string with relevant details of the event in the following format: 
-        {summary: str, location: str, start: str, end: str, description: str}
-        Reason should be a string with the reason why the event cannot be booked. Specifically 
-        which part of the policy is violated (give the specific number and reason)
-    """
-    print("Event cannot be booked:", event, "reason:", reason)
