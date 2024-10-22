@@ -6,24 +6,10 @@ from configs.agents import *
 from swarm.repl import run_demo_loop
 from flask import Flask, request, jsonify
 
-context_variables = {
-    "customer_context": """Here is what you know about the customer's details:
-1. CUSTOMER_ID: customer_12345
-2. NAME: John Doe
-3. PHONE_NUMBER: (123) 456-7890
-4. EMAIL: johndoe@example.com
-5. STATUS: Premium
-6. ACCOUNT_STATUS: Active
-7. BALANCE: $0.00
-8. LOCATION: 1234 Main St, San Francisco, CA 94123, USA
-""",
-    "flight_context": """The customer has an upcoming flight from LGA (Laguardia) in NYC to LAX in Los Angeles.
-The flight # is 1919. The flight departure date is 3pm ET, 5/21/2024.""",
-}
-
 TELNYX_API_KEY = os.getenv("TELNYX_API_KEY")
 MESSAGING_PROFILE_ID = os.getenv("MESSAGING_PROFILE_ID")
 FROM_NUMBER = os.getenv("TELNYX_NUMBER")
+TO_NUMBER = os.getenv("TO_NUMBER")
 
 # Initialize Telnyx client
 telnyx.api_key = TELNYX_API_KEY
@@ -79,4 +65,4 @@ def send_and_wait_for_reply(to, from_, message_body, timeout=300):
 
 if __name__ == "__main__":
     threading.Thread(target=lambda: app.run(port=5000, debug=True, use_reloader=False)).start()
-    run_demo_loop(triage_agent, context_variables=context_variables, debug=True)
+    run_demo_loop(triage_agent, debug=True)
