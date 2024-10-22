@@ -60,7 +60,7 @@ appointment_agent = Agent(
         4. If the person confirms the appointment then create the event by calling 'create_calendar_event'. Always message the person the event details after you book the event. 
         5. If this does not work, repeat steps 2-5 and ask again. 
         
-        IMPORANT: Do not message Henry unless you do not have enough information to schedule the appointment.  You don't need to ask him his preferences or confirm if his calendar is free.
+        IMPORTANT: Do not message Henry unless you do not have enough information to schedule the appointment.  You don't need to ask him his preferences or confirm if his calendar is free.
         IMPORTANT: Always check to make sure that Henry's calendar is free before booking an appointment.
         IMPORTANT: Do not share any details about specific events on Henry's calendar. 
 
